@@ -1,4 +1,5 @@
 import { MenuCategory, MenuItem } from '@/types';
+import { categoryImages, getCategoryImage } from '@/config/images';
 
 export const initialCategories: MenuCategory[] = [
   {
@@ -6,7 +7,7 @@ export const initialCategories: MenuCategory[] = [
     slug: 'dosa',
     name: 'Dosas',
     description: 'Crispy, paper-thin, slow-fermented rice & lentil crepes roasted on seasoned cast iron.',
-    image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
+    image: categoryImages.dosa,
     sortOrder: 1,
     isAvailable: true,
   },
@@ -15,7 +16,7 @@ export const initialCategories: MenuCategory[] = [
     slug: 'idli-vada-upma',
     name: 'Idli / Vada / Upma',
     description: 'Steaming cloud-soft idlis, crunchy golden medu vadas, and savoury tempered upmas.',
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
+    image: categoryImages.idli,
     sortOrder: 2,
     isAvailable: true,
   },
@@ -24,7 +25,7 @@ export const initialCategories: MenuCategory[] = [
     slug: 'south-indian-rice',
     name: 'South Indian Rice',
     description: 'Fragrant seasoned rices tempered with curry leaves, mustard seeds, lentils, and pure ghee.',
-    image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80',
+    image: categoryImages.rice,
     sortOrder: 3,
     isAvailable: true,
   },
@@ -33,7 +34,7 @@ export const initialCategories: MenuCategory[] = [
     slug: 'uttapam',
     name: 'Uttapam',
     description: 'Thick, fluffy traditional South Indian griddled pancakes with savoury vegetable toppings.',
-    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80',
+    image: categoryImages.uttapam,
     sortOrder: 4,
     isAvailable: true,
   },
@@ -42,7 +43,7 @@ export const initialCategories: MenuCategory[] = [
     slug: 'exclusives',
     name: 'Exclusives',
     description: 'Speciality traditional regional delicacies prepared to order.',
-    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80',
+    image: categoryImages.exclusives,
     sortOrder: 5,
     isAvailable: true,
   },
@@ -51,7 +52,7 @@ export const initialCategories: MenuCategory[] = [
     slug: 'desserts',
     name: 'Desserts',
     description: 'Traditional sweets cooked with pure desi ghee, saffron, and roasted nuts.',
-    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80',
+    image: categoryImages.desserts,
     sortOrder: 6,
     isAvailable: true,
   },
@@ -60,7 +61,7 @@ export const initialCategories: MenuCategory[] = [
     slug: 'cold-beverages',
     name: 'Cold Beverages',
     description: 'Refreshing churned lassis, cooling buttermilks, artisanal coffees, and creamy shakes.',
-    image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80',
+    image: categoryImages.beverages,
     sortOrder: 7,
     isAvailable: true,
   },
@@ -69,13 +70,15 @@ export const initialCategories: MenuCategory[] = [
     slug: 'mocktails-sodas',
     name: 'Mocktails & Sodas',
     description: 'Chilled handcrafted mocktails, iced brews, and refreshing citrus coolers.',
-    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=80',
+    image: categoryImages.mocktails,
     sortOrder: 8,
     isAvailable: true,
   },
 ];
 
-export const initialMenuItems: MenuItem[] = [
+type RawMenuItem = Omit<MenuItem, 'image'>;
+
+const rawMenuItems: RawMenuItem[] = [
   // ==================== 1. DOSAS ====================
   {
     id: 'butter-masala-dosa',
@@ -84,7 +87,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Golden roasted crispy dosa generously brushed with Amul butter and folded around spiced potato masala.',
     price: 209,
-    image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -99,7 +101,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Crisp, golden paper-thin crepe roasted with fragrant melted butter, served with sambar and fresh coconut chutneys.',
     price: 179,
-    image: null, // Reserved for official photograph: /images/menu/dosa/butter-plain-dosa.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -112,7 +113,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Crisp dosa layered with rich melted cheese and savoury spiced potato masala.',
     price: 239,
-    image: 'https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -127,7 +127,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Thin crispy golden crepe loaded with molten gourmet cheese that stretches with every bite.',
     price: 209,
-    image: null, // Reserved for official photograph: /images/menu/dosa/cheese-plain-dosa.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -140,7 +139,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'The all-time South Indian classic. Thin, crispy fermented crepe stuffed with seasoned potato bhaji.',
     price: 169,
-    image: 'https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isBestseller: true,
@@ -154,7 +152,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Classic paper-thin crispy dosa roasted on seasoned cast iron tawa to delicate golden perfection.',
     price: 139,
-    image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -167,7 +164,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Thin crispy dosa roasted with an aromatic spiced roasted garlic chutney glaze across the inside.',
     price: 189,
-    image: null, // Reserved for official photograph: /images/menu/dosa/garlic-roast-plain-dosa.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -180,7 +176,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Slow-roasted to aromatic golden crispness in pure desi ghee and filled with hearty seasoned potato filling.',
     price: 229,
-    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -195,7 +190,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Unmistakable aroma of pure melted cow ghee on a delicate, crunch-to-the-bite golden dosa crepe.',
     price: 199,
-    image: null, // Reserved for official photograph: /images/menu/dosa/ghee-roast-plain-dosa.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -208,7 +202,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Smeared with spicy red garlic chili chutney on the inside and filled with seasoned potato bhaji.',
     price: 219,
-    image: null, // Reserved for official photograph: /images/menu/dosa/mysore-masala-dosa.webp
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -223,7 +216,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Crispy dosa glazed on the inside with fiery Mysore spiced red chutney, served without potato filling.',
     price: 189,
-    image: null, // Reserved for official photograph: /images/menu/dosa/mysore-plain-dosa.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -236,7 +228,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Crispy crepe sprinkled with finely chopped shallots and green chilies that caramelize on the griddle.',
     price: 179,
-    image: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -249,7 +240,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Stuffed with fresh soft cottage cheese crumbled and simmered in aromatic South Indian herbs and spices.',
     price: 229,
-    image: null, // Reserved for official photograph: /images/menu/dosa/paneer-masala-dosa.webp
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -263,7 +253,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Crispy golden crepe infused with freshly grated spiced paneer across the surface.',
     price: 199,
-    image: null, // Reserved for official photograph: /images/menu/dosa/paneer-plain-dosa.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -276,7 +265,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'A set of three soft, spongy, melt-in-mouth dosas cooked on one side, served with coconut chutney & sambar.',
     price: 169,
-    image: 'https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -289,7 +277,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Soft spongy set dosas dusted with aromatic spicy gun-powder (podi) and roasted cumin seeds (seeragam).',
     price: 189,
-    image: null, // Reserved for official photograph: /images/menu/dosa/podi-seeragam-set-dosa.webp
     isVegetarian: true,
     isFeatured: false,
     isSignature: true,
@@ -303,7 +290,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Semolina-based lacey, super-crispy netting dosa infused with cumin, ginger, and paired with potato masala.',
     price: 219,
-    image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -318,7 +304,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'dosa',
     description: 'Ultra-crunchy lacey semolina dosa griddled with black peppercorns, curry leaves, and fresh green chilies.',
     price: 189,
-    image: null, // Reserved for official photograph: /images/menu/dosa/plain-rawa-dosa.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -333,7 +318,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'idli-vada-upma',
     description: 'Large, flat plate idli steamed tender, drenched in aromatic ghee and tossed in homemade spicy molapodi.',
     price: 179,
-    image: null, // Reserved for official photograph: /images/menu/idli-vada-upma/ghee-podi-thaat-idli.webp
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -348,7 +332,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'idli-vada-upma',
     description: 'Semolina roasted slowly in ghee, cooked with finely chopped garden vegetables, mustard, and curry leaves.',
     price: 149,
-    image: null, // Reserved for official photograph: /images/menu/idli-vada-upma/ghee-veggie-rawa-upma.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -361,7 +344,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'idli-vada-upma',
     description: 'Pillow-soft steamed rice-lentil cakes immersed in piping hot, freshly brewed vegetable sambar.',
     price: 129,
-    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isBestseller: true,
@@ -375,7 +357,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'idli-vada-upma',
     description: 'The definitive breakfast pairing: one cloud-soft idli and one crispy golden medu vada dipped in sambar.',
     price: 159,
-    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -390,7 +371,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'idli-vada-upma',
     description: 'Bite-sized button idlis tossed in spiced roasted lentil podi and pure melted ghee.',
     price: 169,
-    image: null, // Reserved for official photograph: /images/menu/idli-vada-upma/molapodi-idli.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -403,7 +383,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'idli-vada-upma',
     description: 'Delicate steamed idlis submerged in hot, peppery, tangy South Indian tomato-tamarind rasam broth.',
     price: 149,
-    image: null, // Reserved for official photograph: /images/menu/idli-vada-upma/rasam-idli.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -416,7 +395,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'idli-vada-upma',
     description: 'Two crispy golden fried lentil doughnut vadas dunked in aromatic vegetable sambar.',
     price: 149,
-    image: 'https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -429,11 +407,22 @@ export const initialMenuItems: MenuItem[] = [
     category: 'idli-vada-upma',
     description: 'Hearty, comforting semolina upma tempered with ginger, green chilies, carrots, and sweet green peas.',
     price: 129,
-    image: null, // Reserved for official photograph: /images/menu/idli-vada-upma/veggie-rawa-upma.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
     sortOrder: 8,
+  },
+  {
+    id: 'button-idli-fry',
+    slug: 'button-idli-fry',
+    name: 'Button Idli Fry',
+    category: 'idli-vada-upma',
+    description: 'Crispy golden deep-fried mini button idlis tossed in flavorful spice blends and curry leaves.',
+    price: 159,
+    isVegetarian: true,
+    isFeatured: false,
+    isAvailable: true,
+    sortOrder: 9,
   },
 
   // ==================== 3. SOUTH INDIAN RICE ====================
@@ -444,7 +433,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'south-indian-rice',
     description: 'Cooling seasoned yogurt rice tempered with mustard seeds, curry leaves, ginger, and fresh ruby pomegranate.',
     price: 179,
-    image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isBestseller: true,
@@ -458,7 +446,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'south-indian-rice',
     description: 'Zesty turmeric-infused rice tossed with fresh lemon juice, crunchy roasted peanuts, and mustard seeds.',
     price: 169,
-    image: null, // Reserved for official photograph: /images/menu/south-indian-rice/lemon-rice.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -471,7 +458,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'south-indian-rice',
     description: 'Steaming hot rice blended with freshly brewed tangy, peppery tomato rasam and a dollop of pure ghee.',
     price: 169,
-    image: null, // Reserved for official photograph: /images/menu/south-indian-rice/rasam-rice.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -484,7 +470,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'south-indian-rice',
     description: 'Slow-cooked comforting South Indian rice infused with aromatic lentil sambar and tender farm vegetables.',
     price: 179,
-    image: null, // Reserved for official photograph: /images/menu/south-indian-rice/sambar-rice.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -497,7 +482,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'south-indian-rice',
     description: 'Traditional puliyodharai rice made with slow-simmered spiced tamarind paste, fenugreek, and roasted peanuts.',
     price: 179,
-    image: null, // Reserved for official photograph: /images/menu/south-indian-rice/tamarind-rice.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -510,7 +494,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'south-indian-rice',
     description: 'Tangy spiced rice cooked with ripe country tomatoes, ginger, curry leaves, and freshly ground whole spices.',
     price: 169,
-    image: null, // Reserved for official photograph: /images/menu/south-indian-rice/tomato-rice.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -525,7 +508,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'uttapam',
     description: 'Thick, fluffy fermented pancake crowned with a generous layer of bubbling melted cheese.',
     price: 219,
-    image: null, // Reserved for official photograph: /images/menu/uttapam/cheese-uttapam.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -538,7 +520,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'uttapam',
     description: 'Topped with diced tomatoes, onions, capsicum, carrots, and fresh cilantro, grilled until golden.',
     price: 199,
-    image: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isBestseller: true,
@@ -552,7 +533,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'uttapam',
     description: 'Studded with sweet caramelized onions and green chilies on a thick, soft fermented batter base.',
     price: 189,
-    image: null, // Reserved for official photograph: /images/menu/uttapam/onion-uttapam.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -565,7 +545,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'uttapam',
     description: 'Soft griddled pancake topped with seasoned crumbled cottage cheese, fresh coriander, and spices.',
     price: 219,
-    image: null, // Reserved for official photograph: /images/menu/uttapam/paneer-uttapam.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -578,7 +557,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'uttapam',
     description: 'Traditional thick fermented pancake, crispy golden on the edges and pillow-soft in the center.',
     price: 159,
-    image: null, // Reserved for official photograph: /images/menu/uttapam/regular-uttapam.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -591,7 +569,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'uttapam',
     description: 'Loaded with juicy ripe country tomatoes, fresh curry leaves, and green chillies cooked in pure ghee.',
     price: 189,
-    image: null, // Reserved for official photograph: /images/menu/uttapam/tomato-uttapam.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -606,7 +583,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'exclusives',
     description: 'Delicate string hoppers steamed from fine rice flour dough into tender noodles, served traditional style.',
     price: 179,
-    image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: false,
     isSignature: true,
@@ -620,7 +596,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'exclusives',
     description: 'Steamed rice string hoppers paired with warm, freshly extracted sweetened cardamom-scented coconut milk.',
     price: 199,
-    image: null, // Reserved for official photograph: /images/menu/exclusives/idiyappam-with-coconut-milk.webp
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -637,7 +612,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'desserts',
     description: 'A heartwarming heirloom family recipe dessert slow-roasted in pure cow ghee and loaded with sliced almonds & cashews.',
     price: 149,
-    image: null, // Reserved for official photograph: /images/menu/desserts/dadi-ka-halwa.webp
     isVegetarian: true,
     isFeatured: false,
     isSignature: true,
@@ -651,7 +625,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'desserts',
     description: 'Velvety semolina dessert infused with pure Kashmiri saffron, desi ghee, golden cashews, and plump raisins.',
     price: 129,
-    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isBestseller: true,
@@ -665,7 +638,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'desserts',
     description: 'Classic South Indian rich milk pudding slow-simmered with vermicelli, green cardamom, and roasted cashews.',
     price: 139,
-    image: null, // Reserved for official photograph: /images/menu/desserts/paysam.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -678,7 +650,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'desserts',
     description: 'Aromatic roasted semolina halwa cooked in pure desi ghee with real juicy pineapple chunks and golden nuts.',
     price: 149,
-    image: null, // Reserved for official photograph: /images/menu/desserts/pinapple-sheera.webp
     isVegetarian: true,
     isFeatured: false,
     isSignature: true,
@@ -694,7 +665,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'cold-beverages',
     description: 'Thick, creamy chilled milkshake blended with rich crunchy butterscotch pralines and fresh dairy cream.',
     price: 169,
-    image: null, // Reserved for official photograph: /images/menu/cold-beverages/butterscotch-shake.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -707,7 +677,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'cold-beverages',
     description: 'Signature chilled artisanal brew crafted with premium rich Davidoff coffee roast and velvety cold milk.',
     price: 189,
-    image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -722,7 +691,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'cold-beverages',
     description: 'Smooth chilled coffee infused with aromatic roasted hazelnut essence and topped with coffee foam.',
     price: 199,
-    image: null, // Reserved for official photograph: /images/menu/cold-beverages/hazelnut-cold-coffee.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -735,7 +703,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'cold-beverages',
     description: 'Indulgent gourmet thick shake spun with authentic French Monin dark chocolate and rich ice cream.',
     price: 189,
-    image: null, // Reserved for official photograph: /images/menu/cold-beverages/monin-chocolate-shake.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -748,7 +715,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'cold-beverages',
     description: 'Thick creamy milkshake blended with crunchy chocolate Oreo biscuits and topped with crushed cookie crumbs.',
     price: 179,
-    image: null, // Reserved for official photograph: /images/menu/cold-beverages/oreo-shake.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -761,7 +727,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'cold-beverages',
     description: 'Traditional Punjabi-style thick hand-churned sweet yogurt lassi crowned with a thick layer of fresh malai.',
     price: 139,
-    image: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -776,7 +741,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'cold-beverages',
     description: 'Cooling, digestive spiced chaas freshly churned and tempered with ginger, green chili, curry leaves, and roasted cumin.',
     price: 79,
-    image: null, // Reserved for official photograph: /images/menu/cold-beverages/swadeshi-buttermilk.webp
     isVegetarian: true,
     isFeatured: false,
     isBestseller: true,
@@ -790,7 +754,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'cold-beverages',
     description: 'Classic velvety vanilla bean thick shake prepared with rich farm milk and ice cream.',
     price: 159,
-    image: null, // Reserved for official photograph: /images/menu/cold-beverages/vanilla-shake.webp
     isVegetarian: true,
     isFeatured: false,
     isAvailable: true,
@@ -805,7 +768,6 @@ export const initialMenuItems: MenuItem[] = [
     category: 'mocktails-sodas',
     description: 'Freshly brewed invigorating Ceylon tea chilled over ice cubes with freshly squeezed lemon juice and mint.',
     price: 149,
-    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=80',
     isVegetarian: true,
     isFeatured: true,
     isSignature: true,
@@ -814,3 +776,12 @@ export const initialMenuItems: MenuItem[] = [
     sortOrder: 1,
   },
 ];
+
+/**
+ * All menu items automatically obtain their food image from their category
+ * via the centralized categoryImages configuration.
+ */
+export const initialMenuItems: MenuItem[] = rawMenuItems.map((item) => ({
+  ...item,
+  image: getCategoryImage(item.category),
+}));

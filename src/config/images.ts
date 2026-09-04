@@ -1,80 +1,101 @@
+/**
+ * Centralized Category Image Configuration for Meenu's Dosa
+ * 
+ * Exactly 8 food photographs represent the entire restaurant menu across the site.
+ * Images are manually managed in `public/images/categories/` as documented in `IMAGE_PLACEMENT_GUIDE.md`.
+ * 
+ * NO automatic image searching, scraping, downloading, or external fetching.
+ */
+
+export const categoryImages: Record<string, string> = {
+  // 8 Canonical Keys
+  dosa: '/images/categories/dosa.jpg',
+  idli: '/images/categories/idli.jpg',
+  rice: '/images/categories/rice.jpg',
+  uttapam: '/images/categories/uttapam.jpg',
+  exclusives: '/images/categories/exclusives.jpg',
+  desserts: '/images/categories/desserts.jpg',
+  beverages: '/images/categories/beverages.jpg',
+  mocktails: '/images/categories/mocktails.jpg',
+
+  // Category ID aliases used throughout the codebase
+  'idli-vada-upma': '/images/categories/idli.jpg',
+  'south-indian-rice': '/images/categories/rice.jpg',
+  'cold-beverages': '/images/categories/beverages.jpg',
+  'mocktails-sodas': '/images/categories/mocktails.jpg',
+};
+
+/**
+ * Resolves the category photograph for any category ID, slug, or dish name
+ */
+export function getCategoryImage(categoryKey: string): string {
+  if (!categoryKey) return categoryImages.dosa;
+
+  if (categoryImages[categoryKey]) {
+    return categoryImages[categoryKey];
+  }
+
+  const normalized = categoryKey.toLowerCase();
+  if (normalized.includes('dosa')) return categoryImages.dosa;
+  if (normalized.includes('idli') || normalized.includes('vada') || normalized.includes('upma')) return categoryImages.idli;
+  if (normalized.includes('rice')) return categoryImages.rice;
+  if (normalized.includes('uttapam')) return categoryImages.uttapam;
+  if (normalized.includes('exclusive')) return categoryImages.exclusives;
+  if (normalized.includes('dessert') || normalized.includes('halwa') || normalized.includes('sheera') || normalized.includes('payasam')) return categoryImages.desserts;
+  if (normalized.includes('beverage') || normalized.includes('shake') || normalized.includes('coffee') || normalized.includes('lassi') || normalized.includes('buttermilk')) return categoryImages.beverages;
+  if (normalized.includes('mocktail') || normalized.includes('soda') || normalized.includes('tea')) return categoryImages.mocktails;
+
+  return categoryImages.dosa;
+}
+
 export const imagesConfig = {
   hero: {
-    dosaHero: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=1600&q=85',
-    dosaPlatter: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=85',
-    idliPlatter: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=85',
+    dosaHero: categoryImages.dosa,
+    dosaPlatter: categoryImages.dosa,
+    idliPlatter: categoryImages.idli,
   },
-  categories: {
-    dosas: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
-    'idli-vada-upma': 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
-    rice: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80',
-    uttapam: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80',
-    exclusives: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
-    desserts: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80&dadi=1',
-    'cold-beverages': 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80',
-    'mocktails-sodas': 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80',
-  },
-  dishes: {
-    butterMasalaDosa: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
-    cheeseMasalaDosa: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
-    masalaDosa: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
-    gheeRoastDosa: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
-    mysoreMasalaDosa: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
-    paneerMasalaDosa: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
-    rawaMasalaDosa: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
-    onionDosa: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
-    plainDosa: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
-    idliSambar: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
-    vadaSambar: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
-    curdRice: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80',
-    lemonRice: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80',
-    uttapam: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80',
-    halwa: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80&dadi=1',
-    filterCoffee: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80',
-    lassi: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=800&q=80',
-    idiyappam: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80',
-  },
+  categories: categoryImages,
   ambiance: {
-    interior: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85',
-    familyDining: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=85',
-    tawaArt: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1200&q=85',
-    tableSetup: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=85',
+    interior: categoryImages.dosa,
+    familyDining: categoryImages.uttapam,
+    tawaArt: categoryImages.dosa,
+    tableSetup: categoryImages.idli,
   },
   instagram: [
     {
       id: 'ig-1',
-      image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=600&q=80',
+      image: categoryImages.dosa,
       caption: 'The golden spiral: perfectly roasted Masala Dosa served with our trio of chutneys.',
       likes: '428',
     },
     {
       id: 'ig-2',
-      image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80',
+      image: categoryImages.idli,
       caption: 'Steaming hot Idli Vada Sambar — breakfast that warms your soul.',
       likes: '512',
     },
     {
       id: 'ig-3',
-      image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80',
+      image: categoryImages.uttapam,
       caption: 'Thick, fluffy Onion & Tomato Uttapam sizzling with pure ghee.',
       likes: '389',
     },
     {
       id: 'ig-4',
-      image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80',
-      caption: 'Frothy, authentic decoction South Indian style coffee poured from high.',
+      image: categoryImages.rice,
+      caption: 'Tempered South Indian Rice with mustard seeds, curry leaves & pure ghee.',
       likes: '645',
     },
     {
       id: 'ig-5',
-      image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80',
-      caption: 'Tempered Curd Rice with mustard seeds, curry leaves & pomegranate.',
+      image: categoryImages.desserts,
+      caption: 'Traditional sweets made fresh daily with pure desi ghee and roasted nuts.',
       likes: '310',
     },
     {
       id: 'ig-6',
-      image: 'https://images.unsplash.com/photo-1605197143984-754630a91176?auto=format&fit=crop&w=600&q=80',
-      caption: 'Sweet conclusion: Kesari Halwa glistening with cashews and ghee.',
+      image: categoryImages.beverages,
+      caption: 'Refreshing cold churned beverages, lassis, and artisanal coffees.',
       likes: '477',
     },
   ],

@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/ui/Button';
 import { VegBadge } from '@/ui/Badge';
-import { FoodCard } from '@/components/cards/FoodCard';
 import { CategoryCard } from '@/components/cards/CategoryCard';
 import { ServiceCard } from '@/components/cards/ServiceCard';
 import { LocationCard } from '@/components/cards/LocationCard';
@@ -29,7 +28,6 @@ import {
 } from 'lucide-react';
 
 export default function HomePage() {
-  const featuredDishes = menuService.getFeaturedItemsSync();
   const categories = menuService.getCategoriesSync();
 
   return (
@@ -156,19 +154,19 @@ export default function HomePage() {
       {/* ==================== 2. BRAND TRUST SECTION ==================== */}
       <TrustSection />
 
-      {/* ==================== 3. SIGNATURE DISHES ==================== */}
-      <section className="py-12 sm:py-20 bg-brand-cream">
+      {/* ==================== 3. 8-CATEGORY FOOD SHOWCASE ==================== */}
+      <section className="py-12 sm:py-20 bg-brand-cream border-t border-brand-brown/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <span className="text-xs uppercase tracking-widest font-bold text-brand-orange">
-                Signature Selections
+                Authentic South Indian Specialties
               </span>
               <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-brand-brown mt-1">
-                Made for Dosa Lovers
+                Explore Our Food Categories
               </h2>
               <p className="text-xs sm:text-base text-brand-brown-muted mt-1.5 max-w-xl">
-                Crispy, buttery, aromatic dosas crafted on sizzling seasoned iron tawas. Served hot with fresh coconut chutneys and lentil sambar.
+                Every recipe prepared with pure ingredients, authentic South Indian craftsmanship, and genuine hospitality. Select a category to explore our authentic dishes.
               </p>
             </div>
             <Button
@@ -183,29 +181,6 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {featuredDishes.map((dish) => (
-              <FoodCard key={dish.id} item={dish} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== 4. FOOD CATEGORIES ==================== */}
-      <section className="py-12 sm:py-20 bg-white border-t border-brand-brown/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12 space-y-1.5">
-            <span className="text-xs uppercase tracking-widest font-bold text-brand-orange">
-              A Wide South Indian Menu
-            </span>
-            <h2 className="font-serif text-2xl sm:text-4xl font-bold text-brand-brown">
-              Explore by Category
-            </h2>
-            <p className="text-xs sm:text-sm text-brand-brown-muted">
-              From dawn breakfast classics to hearty dinners, discover authentic vegetarian flavours.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {categories.map((category) => (
               <CategoryCard key={category.id} category={category} />
             ))}

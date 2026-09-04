@@ -7,7 +7,7 @@ export const siteConfig = {
   heritageClaim: "Serving the love of South Indian food for generations.",
   heritageYears: "40+",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://meenusdosa.com",
-  ogImage: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=1200&q=80",
+  ogImage: "/images/categories/dosa.jpg",
   description:
     "Discover authentic South Indian cuisine at Meenu's Dosa in Bhopal. Explore hot crispy dosas, soft idlis, uttapams and regional delicacies. Pure vegetarian dining, takeaway, online ordering, and table reservations.",
   keywords: [

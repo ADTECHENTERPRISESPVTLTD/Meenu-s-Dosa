@@ -3,94 +3,80 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { Lightbox, GalleryItem } from '@/components/gallery/Lightbox';
-import { imagesConfig } from '@/config/images';
+import { categoryImages, imagesConfig } from '@/config/images';
 import { Maximize2, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const galleryData: GalleryItem[] = [
   {
     id: 'gal-1',
-    title: 'Butter Masala Dosa',
+    title: 'Hot Crispy Masala Dosa',
     category: 'Dosa',
-    image: imagesConfig.hero.dosaHero,
-    description: 'Golden, paper-thin fermented rice-lentil crepe with pure butter and potato masala.',
+    image: categoryImages.dosa,
+    description: 'Golden, paper-thin fermented rice-lentil crepe folded around spiced potato masala.',
   },
   {
     id: 'gal-2',
-    title: 'Steaming Idli Vada Sambar',
+    title: 'Steaming Idli & Medu Vada',
     category: 'South Indian',
-    image: imagesConfig.hero.idliPlatter,
+    image: categoryImages.idli,
     description: 'Cloud-soft steamed idlis paired with crisp medu vada and freshly simmered sambar.',
   },
   {
     id: 'gal-3',
+    title: 'Authentic South Indian Rice',
+    category: 'Food',
+    image: categoryImages.rice,
+    description: 'Aromatic seasoned rices tempered with mustard seeds, curry leaves, and pure ghee.',
+  },
+  {
+    id: 'gal-4',
+    title: 'Thick Onion & Tomato Uttapam',
+    category: 'South Indian',
+    image: categoryImages.uttapam,
+    description: 'Fluffy griddled pancake topped with onions, ripe country tomatoes, and fresh coriander.',
+  },
+  {
+    id: 'gal-5',
+    title: 'Idiyappam Regional Specialty',
+    category: 'South Indian',
+    image: categoryImages.exclusives,
+    description: 'Tender steamed rice noodles served with sweet cardamom-infused coconut milk.',
+  },
+  {
+    id: 'gal-6',
+    title: 'Traditional Desi Ghee Desserts',
+    category: 'Food',
+    image: categoryImages.desserts,
+    description: 'Authentic sweets slow-roasted in pure cow ghee and loaded with sliced almonds & cashews.',
+  },
+  {
+    id: 'gal-7',
+    title: 'Chilled Shakes & Artisanal Coffee',
+    category: 'Food',
+    image: categoryImages.beverages,
+    description: 'Refreshing churned lassis, cooling buttermilks, artisanal coffees, and creamy shakes.',
+  },
+  {
+    id: 'gal-8',
+    title: 'Handcrafted Mocktails & Iced Teas',
+    category: 'Food',
+    image: categoryImages.mocktails,
+    description: 'Freshly brewed invigorating Ceylon tea chilled over ice with fresh citrus notes.',
+  },
+  {
+    id: 'gal-9',
     title: 'The Sizzling Cast Iron Tawa',
     category: 'Behind the Scenes',
     image: imagesConfig.ambiance.tawaArt,
     description: 'Handcrafted precision: spreading slow-fermented batter on seasoned iron griddles.',
   },
   {
-    id: 'gal-4',
+    id: 'gal-10',
     title: 'Warm Family Dining Ambiance',
     category: 'Restaurant',
     image: imagesConfig.ambiance.familyDining,
     description: 'Welcoming dining rooms in Bhopal designed for comfortable family meals.',
-  },
-  {
-    id: 'gal-5',
-    title: 'Mysore Masala Dosa',
-    category: 'Dosa',
-    image: imagesConfig.dishes.mysoreMasalaDosa,
-    description: 'Crisp dosa smeared with red garlic chili chutney and filled with savoury bhaji.',
-  },
-  {
-    id: 'gal-6',
-    title: 'Thick Onion & Tomato Uttapam',
-    category: 'South Indian',
-    image: imagesConfig.dishes.uttapam,
-    description: 'Fluffy pancake griddled with caramelised onions, ripe country tomatoes, and green chillies.',
-  },
-  {
-    id: 'gal-7',
-    title: 'Tempered Curd Rice',
-    category: 'Food',
-    image: imagesConfig.dishes.curdRice,
-    description: 'Cooling seasoned yogurt rice tempered with mustard seeds, curry leaves, and pomegranate.',
-  },
-  {
-    id: 'gal-8',
-    title: 'Traditional Idiyappam',
-    category: 'South Indian',
-    image: imagesConfig.dishes.idiyappam,
-    description: 'Tender steamed rice noodles served with sweet cardamom coconut milk.',
-  },
-  {
-    id: 'gal-9',
-    title: 'Kesari Halwa with Pure Desi Ghee',
-    category: 'Food',
-    image: imagesConfig.dishes.halwa,
-    description: 'Aromatic semolina halwa infused with saffron, golden cashews, and raisins.',
-  },
-  {
-    id: 'gal-10',
-    title: 'Restaurant Seating Setup',
-    category: 'Restaurant',
-    image: imagesConfig.ambiance.tableSetup,
-    description: 'Hygienic, comfortable table layouts welcoming guests daily.',
-  },
-  {
-    id: 'gal-11',
-    title: 'Traditional South Indian Decoction Coffee',
-    category: 'Food',
-    image: imagesConfig.dishes.filterCoffee,
-    description: 'Frothy, full-bodied filter coffee served in traditional brass dabarah and tumbler.',
-  },
-  {
-    id: 'gal-12',
-    title: 'Crispy Lacey Rawa Dosa',
-    category: 'Dosa',
-    image: imagesConfig.dishes.rawaMasalaDosa,
-    description: 'Semolina netted crepe roasted with black pepper, cumin seeds, and fresh ginger.',
   },
 ];
 

@@ -9,7 +9,7 @@ import { initialCategories, initialMenuItems } from '@/data/menuData';
  * static JSON or database collections.
  * 
  * CURRENT IMPLEMENTATION:
- * Returns structured in-memory/local data.
+ * Returns structured in-memory data where menu items obtain images from their category.
  * 
  * FUTURE MIGRATION PATH:
  * Replace internal data returns with:
@@ -77,7 +77,7 @@ export const menuService = {
   },
 
   /**
-   * Fetch featured / signature dishes for homepage and highlight sections
+   * Fetch featured / signature dishes for highlight sections
    */
   async getFeaturedItems(): Promise<MenuItem[]> {
     return initialMenuItems
@@ -92,41 +92,5 @@ export const menuService = {
     return initialMenuItems
       .filter((item) => (item.isSignature || item.isBestseller) && item.isAvailable)
       .slice(0, 8);
-  },
-
-  /**
-   * Validation utility to ensure every menu item has a unique image reference.
-   * Reports duplicates in development.
-   */
-  validateMenuImageUniqueness(): {
-    isUnique: boolean;
-    totalItems: number;
-    duplicateImages: Record<string, string[]>;
-  } {
-    const imageMap: Record<string, string[]> = {};
-
-    initialMenuItems.forEach((item) => {
-      if (!item.image) return;
-      if (!imageMap[item.image]) {
-        imageMap[item.image] = [];
-      }
-      imageMap[item.image].push(item.name);
-    });
-
-    const duplicates: Record<string, string[]> = {};
-    let hasDuplicates = false;
-
-    Object.entries(imageMap).forEach(([img, items]) => {
-      if (items.length > 1) {
-        duplicates[img] = items;
-        hasDuplicates = true;
-      }
-    });
-
-    return {
-      isUnique: !hasDuplicates,
-      totalItems: initialMenuItems.length,
-      duplicateImages: duplicates,
-    };
   },
 };
