@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-brand-orange: #D94801;
+  --color-brand-gold: #F59E0B;
+  --color-brand-cream: #FFF8ED;
+  --color-brand-brown: #241A14;
+  --color-brand-green: #2F6B3C;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #FFF8ED;
+  color: #241A14;
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: #D94801;
+  color: #FFFFFF;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF8ED;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D94801;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #BF3D00;
+}
+
+/* Focus States for Accessibility */
+*:focus-visible {
+  outline: 2px solid #D94801;
+  outline-offset: 2px;
+}
+
+/* Glassmorphism helpers */
+.glass-header {
+  background-color: rgba(255, 248, 237, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-card {
+  background-color: rgba(255, 253, 249, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Subtle warm gradient text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #D94801 0%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hide scrollbar for horizontally scrollable tabs while maintaining functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Pulse animation for veg badge dot */
+@keyframes veg-glow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.85;
+  }
+}
+
+.veg-pulse {
+  animation: veg-glow 3s infinite ease-in-out;
+}
